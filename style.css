@@ -1,0 +1,168 @@
+/* Configurações Globais e Paleta de Cores */
+:root {
+    --fundo-principal: #F5EFE6;
+    --fundo-card: #FFFFFF;
+    --cor-destaque: #B71C1C;
+    --cor-texto: #4E342E;
+    --dourado-acento: #FFD700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--fundo-principal);
+    color: var(--cor-texto);
+    padding-bottom: 100px; /* Espaço para o rodapé fixo */
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--fundo-card);
+}
+
+.imagem-principal {
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid var(--dourado-acento);
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: var(--cor-destaque);
+    font-size: 2rem;
+}
+
+/* Conteúdo Principal e Seções */
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: var(--cor-destaque);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--dourado-acento);
+}
+
+/* Card do Produto */
+.cardapio-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.produto-imagem {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.produto-info {
+    flex-grow: 1;
+}
+
+.produto-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.produto-info .produto-descricao {
+    font-size: 0.8rem;
+    color: #757575;
+    margin-bottom: 5px;
+}
+
+.produto-info .produto-preco {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Controle de Quantidade */
+.controle-quantidade {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.controle-quantidade button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: var(--cor-destaque);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.controle-quantidade button:hover {
+    background-color: #8c1616;
+}
+
+.controle-quantidade .quantidade {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 15px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Rodapé Fixo */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-texto);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.total-container {
+    font-size: 1.1rem;
+}
+
+#valor-total {
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+#btn-novo-pedido {
+    background-color: var(--cor-destaque);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#btn-novo-pedido:hover {
+    background-color: #8c1616;
+}
