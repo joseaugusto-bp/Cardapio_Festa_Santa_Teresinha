@@ -20,7 +20,8 @@
     </header>
 
     <main>
-        <section id="comidas">
+        <div id="menu-principal">
+            <section id="comidas">
             <h2>Comidas</h2>
 
             <div class="cardapio-item">
@@ -213,6 +214,16 @@
                 </div>
             </div>
         </section>
+        </div>
+
+        <section id="resumo-pedido" class="escondido">
+            <h2>Resumo do Pedido</h2>
+            <ul id="lista-resumo"></ul>
+            <div class="acoes-resumo">
+                <button id="btn-voltar">Voltar e Editar</button>
+                <button id="btn-limpar-pedido">Cancelar / Limpar Pedido</button>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -220,7 +231,7 @@
             <strong>Valor Total:</strong>
             <span id="valor-total">R$ 0,00</span>
         </div>
-        <button id="btn-novo-pedido">Novo Pedido</button>
+        <button id="btn-finalizar-pedido">Ver Resumo</button>
     </footer>
 
     <script src="script.js"></script>

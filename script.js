@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Seleciona todos os elementos importantes da página
     const itensCardapio = document.querySelectorAll('.cardapio-item');
     const valorTotalEl = document.getElementById('valor-total');
-    const btnNovoPedido = document.getElementById('btn-novo-pedido');
+    const btnFinalizarPedido = document.getElementById('btn-finalizar-pedido');
+    const menuPrincipal = document.getElementById('menu-principal');
+    const resumoPedido = document.getElementById('resumo-pedido');
+    const listaResumo = document.getElementById('lista-resumo');
+    const btnVoltar = document.getElementById('btn-voltar');
+    const btnLimparPedido = document.getElementById('btn-limpar-pedido');
 
     // Função para calcular e atualizar o valor total do pedido
     const atualizarTotal = () => {
@@ -53,18 +58,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Evento para o botão "Novo Pedido"
-    btnNovoPedido.addEventListener('click', () => {
-        // Exibe uma caixa de confirmação
-        const confirmar = confirm('Deseja realmente limpar o pedido atual?');
+    // Evento para o botão "Ver Resumo" no rodapé
+    btnFinalizarPedido.addEventListener('click', () => {
+        let total = 0;
+        listaResumo.innerHTML = '';
+        
+        itensCardapio.forEach(item => {
+            const quantidade = parseInt(item.querySelector('.quantidade').textContent);
+            if (quantidade > 0) {
+                const nome = item.querySelector('h3').textContent;
+                const preco = parseFloat(item.querySelector('.produto-preco').dataset.preco);
+                const subtotal = preco * quantidade;
+                total += subtotal;
+                
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${quantidade}x ${nome}</span> <span>${subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+                listaResumo.appendChild(li);
+            }
+        });
 
+        if (total === 0) {
+            alert('Por favor, adicione pelo menos um item ao seu pedido.');
+            return;
+        }
+
+        // Adiciona linha do total no resumo
+        const liTotal = document.createElement('li');
+        liTotal.classList.add('total-resumo');
+        liTotal.innerHTML = `<span>TOTAL</span> <span>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+        listaResumo.appendChild(liTotal);
+
+        // Esconde menu e mostra resumo
+        menuPrincipal.classList.add('escondido');
+        resumoPedido.classList.remove('escondido');
+        
+        // Esconde o footer original
+        document.querySelector('footer').classList.add('escondido');
+    });
+
+    // Evento para voltar e editar o pedido
+    btnVoltar.addEventListener('click', () => {
+        menuPrincipal.classList.remove('escondido');
+        resumoPedido.classList.add('escondido');
+        document.querySelector('footer').classList.remove('escondido');
+    });
+
+    // Evento para limpar o pedido
+    btnLimparPedido.addEventListener('click', () => {
+        const confirmar = confirm('Deseja realmente limpar o pedido atual?');
         if (confirmar) {
-            // Zera a quantidade de todos os itens
             itensCardapio.forEach(item => {
-                const quantidadeEl = item.querySelector('.quantidade');
-                quantidadeEl.textContent = '0';
+                item.querySelector('.quantidade').textContent = '0';
             });
-            atualizarTotal(); // Atualiza o total para R$ 0,00
+            atualizarTotal();
+            
+            // Volta para a tela inicial
+            menuPrincipal.classList.remove('escondido');
+            resumoPedido.classList.add('escondido');
+            document.querySelector('footer').classList.remove('escondido');
         }
     });
 

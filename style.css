@@ -151,7 +151,7 @@ footer {
     margin-left: 8px;
 }
 
-#btn-novo-pedido {
+#btn-finalizar-pedido {
     background-color: var(--cor-destaque);
     color: white;
     border: none;
@@ -163,6 +163,74 @@ footer {
     transition: background-color 0.2s;
 }
 
-#btn-novo-pedido:hover {
+#btn-finalizar-pedido:hover {
     background-color: #8c1616;
+}
+
+/* Classes para o resumo do pedido */
+.escondido {
+    display: none !important;
+}
+
+#resumo-pedido {
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+#lista-resumo {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+#lista-resumo li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+#lista-resumo li.total-resumo {
+    border-bottom: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--cor-destaque);
+    margin-top: 10px;
+}
+
+.acoes-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.acoes-resumo button {
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#btn-voltar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#btn-voltar:hover {
+    background-color: #45a049;
+}
+
+#btn-limpar-pedido {
+    background-color: #757575;
+    color: white;
+}
+
+#btn-limpar-pedido:hover {
+    background-color: #555;
 }
