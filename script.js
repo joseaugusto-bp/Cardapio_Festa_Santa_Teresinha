@@ -10,6 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const listaResumo = document.getElementById('lista-resumo');
     const btnVoltar = document.getElementById('btn-voltar');
     const btnLimparPedido = document.getElementById('btn-limpar-pedido');
+    const toast = document.getElementById('toast');
+
+    // Função para mostrar a notificação (Toast)
+    const mostrarToast = (mensagem) => {
+        toast.textContent = mensagem;
+        toast.classList.add('mostrar');
+        
+        // Remove a notificação após 2 segundos
+        setTimeout(() => {
+            toast.classList.remove('mostrar');
+        }, 2000);
+    };
 
     // Função para calcular e atualizar o valor total do pedido
     const atualizarTotal = () => {
@@ -30,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Formata o valor total como moeda brasileira (BRL) e exibe no rodapé
         valorTotalEl.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        // Adiciona ou remove animação do botão de Ver Resumo
+        if (total > 0) {
+            btnFinalizarPedido.classList.add('botao-destaque-animado');
+        } else {
+            btnFinalizarPedido.classList.remove('botao-destaque-animado');
+        }
     };
 
     // Adiciona os eventos de clique para os botões de cada item
@@ -44,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             quantidade++;
             quantidadeEl.textContent = quantidade;
             atualizarTotal(); // Recalcula o total
+            
+            const nomeItem = item.querySelector('h3').textContent;
+            mostrarToast(`${nomeItem} adicionado!`);
         });
 
         // Evento para o botão de subtrair (-)
@@ -90,7 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Esconde menu e mostra resumo
         menuPrincipal.classList.add('escondido');
+        menuPrincipal.classList.remove('animacao-tela');
+        
         resumoPedido.classList.remove('escondido');
+        resumoPedido.classList.add('animacao-tela');
         
         // Esconde o footer original
         document.querySelector('footer').classList.add('escondido');
@@ -98,8 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Evento para voltar e editar o pedido
     btnVoltar.addEventListener('click', () => {
-        menuPrincipal.classList.remove('escondido');
         resumoPedido.classList.add('escondido');
+        resumoPedido.classList.remove('animacao-tela');
+        
+        menuPrincipal.classList.remove('escondido');
+        menuPrincipal.classList.add('animacao-tela');
+        
         document.querySelector('footer').classList.remove('escondido');
     });
 

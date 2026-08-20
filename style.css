@@ -234,3 +234,71 @@ footer {
 #btn-limpar-pedido:hover {
     background-color: #555;
 }
+/* ANIMAÇÕES E ESTILIZAÇÕES (SENIOR DESIGN) */
+
+/* Notificação Toast */
+#toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background-color: var(--cor-destaque);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(183, 28, 28, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+}
+
+#toast.mostrar {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Efeito nos cards */
+.cardapio-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardapio-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Efeito de clique nos botões + e - */
+.controle-quantidade button {
+    transition: all 0.2s ease;
+}
+
+.controle-quantidade button:active {
+    transform: scale(0.85);
+    background-color: #6a1010;
+}
+
+/* Animação para o botão de Ver Resumo */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(183, 28, 28, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(183, 28, 28, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(183, 28, 28, 0); }
+}
+
+.botao-destaque-animado {
+    animation: pulse 1.5s infinite;
+}
+
+/* Transição suave entre telas */
+.animacao-tela {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
